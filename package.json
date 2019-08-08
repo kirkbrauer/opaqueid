@@ -1,0 +1,47 @@
+{
+  "name": "opaqueid",
+  "version": "1.0.0",
+  "description": "A basic opaque ID generator with support for types and metadata.",
+  "keywords": [
+    "id",
+    "base64",
+    "opaque",
+    "opaqueid"
+  ],
+  "main": "lib/opaqueid.js",
+  "types": "lib/opaqueid.d.ts",
+  "author": "Kirk Brauer",
+  "license": "MIT",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "document": "typedoc --exclude src/**/*.test.ts --out docs src",
+    "test": "jest --config jestconfig.json",
+    "test:watch": "jest --config jestconfig.json --watch",
+    "test:cov": "jest --config jestconfig.json --coverage",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirkbrauer/opaqueid.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.7.1",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3"
+  }
+}
