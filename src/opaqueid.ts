@@ -35,18 +35,19 @@ export function encodeId<T extends Object = Object>(
  * @param encodedId The base64 encoded ID.
  * @param type The expected type of the entity.
  */
-export function decodeId(
-  encodedId: string,
-  type?: string
-): string | number {
-  const decoded = decode(encodedId).split('|');
+export function decodeId(encodedId: string, type?: string): string | number {
+  const decoded = decode(encodedId);
+  if (!decoded.includes('|')) {
+    throw new Error(`Invalid ${type || ''} ID`);
+  }
+  const split = decode(encodedId).split('|');
   if (type !== undefined) {
-    if (decoded[0] !== type) {
-      throw new Error(`Expected ${type} ID, got ${decoded[0]} ID`);
+    if (split[0] !== type) {
+      throw new Error(`Expected ${type} ID, got ${split[0]} ID`);
     }
   }
   // Convert to a number if the ID is numeric
-  return isNaN(decoded[1] as any) ? decoded[1] : (decoded[1] as any) * 1;
+  return isNaN(split[1] as any) ? split[1] : (split[1] as any) * 1;
 }
 
 /**
