@@ -22,7 +22,7 @@
     "test": "jest --config jestconfig.json",
     "test:watch": "jest --config jestconfig.json --watch",
     "test:cov": "jest --config jestconfig.json --coverage",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint": "eslint ./src/**/*.ts",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -36,12 +36,19 @@
   "devDependencies": {
     "@types/jest": "^24.0.17",
     "@types/node": "^12.7.1",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
-    "tslint-config-airbnb": "^5.11.1",
     "typedoc": "^0.15.0",
     "typescript": "^3.5.3"
-  }
+  },
+  "dependencies": {}
 }

@@ -59,6 +59,6 @@ $ npm test
 ```
 
 ## Licence
-Copyright (c) 2019 Kirk Brauer.
+Copyright (c) 2020 Kirk Brauer.
 
 Released under the [MIT license](https://tldrlegal.com/license/mit-license).

@@ -10,6 +10,7 @@ import {
 const STR = 'jh%274$jxb*@!';
 const TYPE = 'Type';
 const NUM = 12345;
+const INVALID_ID = '8t7uhvgvkbvpivi';
 const METADATA = {
   name: 'Test',
   number: 1234
@@ -78,6 +79,16 @@ describe('decodeId()', () => {
   test('Returns a number if the ID is numeric', () => {
     const OPAQUE = encodeId(NUM);
     expect(typeof decodeId(OPAQUE)).toEqual('number');
+  });
+  test('Throws an error if the ID is invalid', () => {
+    expect(() => {
+      decodeId(INVALID_ID, 'Test');
+    }).toThrow(new Error('Invalid Test ID'));
+  });
+  test('Throws an error if the ID is invalid and the type is undefined', () => {
+    expect(() => {
+      decodeId(INVALID_ID);
+    }).toThrow(new Error('Invalid ID'));
   });
 });
 

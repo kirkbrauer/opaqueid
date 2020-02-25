@@ -1,0 +1,35 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint-config-airbnb"
+  ],
+  "rules":  {
+    "no-trailing-whitespace": 0,
+    "trailing-comma": 0,
+    "import-name": 0,
+    "align": 0,
+    "variable-name": 0,
+    "max-line-length": 0,
+    "function-name": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "no-undef": 0,
+    "no-restricted-globals": 0,
+    "comma-dangle": 0
+  },
+  "ignorePatterns": [
+    "lib/**/*",
+    "node_modules/**/*",
+    "docs/**/*",
+    "coverage/**/*"
+  ]
+}

@@ -16,6 +16,6 @@ yarn-error.log*
 *.seed
 *.pid.lock
 coverage
-.DS_STORE
+.DS_Store
 .nyc_output
 coverage/

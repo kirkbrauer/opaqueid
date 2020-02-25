@@ -1,3 +1,6 @@
+import InvalidIDError from './error/InvalidIDError';
+import InvalidIDTypeError from './error/InvalidIDTypeError';
+
 /**
  * Base64 encodes a string.
  * @param b The string to encode.
@@ -36,14 +39,19 @@ export function encodeId<T extends Object = Object>(
  * @param type The expected type of the entity.
  */
 export function decodeId(encodedId: string, type?: string): string | number {
-  const decoded = decode(encodedId);
-  if (!decoded.includes('|')) {
-    throw new Error(`Invalid ${type || ''} ID`);
+  let decoded: string;
+  try {
+    decoded = decode(encodedId);
+    // Throw an error if the ID does not contain delimeters
+    if (!decoded.includes('|')) throw new Error('Missing delimeters');
+  } catch {
+    throw new InvalidIDError(type);
   }
-  const split = decode(encodedId).split('|');
+  // Split the decoded ID
+  const split = decoded.split('|');
   if (type !== undefined) {
     if (split[0] !== type) {
-      throw new Error(`Expected ${type} ID, got ${split[0]} ID`);
+      throw new InvalidIDTypeError(type, split[0]);
     }
   }
   // Convert to a number if the ID is numeric
@@ -71,7 +79,7 @@ export function getIdMetadata<T extends Object>(
 ): T | undefined {
   const decoded = decode(encodedId).split('|');
   if (decoded[0] !== type) {
-    throw new Error(`Expected ${type} ID, got ${decoded[0]} ID`);
+    throw new InvalidIDTypeError(type, decoded[0]);
   }
   return decoded[2] ? JSON.parse(decoded[2]) : undefined;
 }
